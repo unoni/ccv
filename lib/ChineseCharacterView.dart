@@ -5,6 +5,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:path_drawing/path_drawing.dart';
+import 'package:ChineseCharacterView/models/StrokeModel.dart';
+import 'package:provider/provider.dart';
 
 bool isAnimationEnd = true;
 bool firstDrawing = true;
@@ -164,11 +166,12 @@ class _ChineseCharacterViewState extends State<ChineseCharacterView>
         }
       })
       ..addListener(() {
-        if (!widget._autoDraw) {
+        if (!widget._autoDraw || Provider.of<StrokeModel>(context, listen: false).needRefresh) {
           //没有这个置零会导致下次播放的第一帧不是从0开始。下面那个return也是 这个作用
           _value = 0.0;
           curDrawingIndex = 0;
           firstDrawing = true;
+          Provider.of<StrokeModel>(context, listen: false).setNeedRefresh(false);
           return;
         }
         if(mounted){

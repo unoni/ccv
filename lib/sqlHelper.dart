@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:sqflite/sqflite.dart';
-import 'package:ChineseCharacterView/fontStrokeDataBean.dart';
+import 'package:ChineseCharacterView/models/fontStrokeDataBean.dart';
 import 'package:path/path.dart';
 import 'dart:typed_data';
 import 'package:flutter/services.dart';
